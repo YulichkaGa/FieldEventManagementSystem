@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignalR Test</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
+</head>
+<body>
+
+<h1>SignalR Test</h1>
+
+<h2 id="status">Connecting...</h2>
+
+<div id="messages"></div>
+
+<script>
+
+const connection = new signalR.HubConnectionBuilder()
+    .withUrl("http://localhost:5129/hubs/events")
+    .withAutomaticReconnect()
+    .configureLogging(signalR.LogLevel.Information)
+    .build();
+
+connection.on("EventCreated", event => {
+
+    console.log("Event received:", event);
+
+    const div = document.createElement("div");
+
+    div.innerHTML = `
+        <hr>
+        <b>${event.title}</b><br>
+        ${event.description}<br>
+        ${event.location}<br>
+        ${event.createdAt}
+    `;
+
+    document.getElementById("messages").prepend(div);
+});
+
+async function start() {
+    try {
+
+        await connection.start();
+
+        console.log("✅ Connected");
+
+        document.getElementById("status").innerHTML =
+            "✅ Connected";
+
+    }
+    catch (err) {
+
+        console.error(err);
+
+        document.getElementById("status").innerHTML =
+            "❌ Connection failed";
+
+    }
+}
+
+start();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/agent/">
+    <Project Path="agent/FieldEvents.Agent/FieldEvents.Agent.csproj" />
+  </Folder>
+  <Folder Name="/backend/">
+    <Project Path="backend/FieldEvents.Api/FieldEvents.Api.csproj" />
+    <Project Path="backend/FieldEvents.Application/FieldEvents.Application.csproj" />
+    <Project Path="backend/FieldEvents.Domain/FieldEvents.Domain.csproj" />
+    <Project Path="backend/FieldEvents.Infrastructure/FieldEvents.Infrastructure.csproj" />
+    <Project Path="backend/FieldEvents.Tests/FieldEvents.Tests.csproj" />
+  </Folder>
+</Solution>

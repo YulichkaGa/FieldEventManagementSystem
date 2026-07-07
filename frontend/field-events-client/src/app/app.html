@@ -1,0 +1,29 @@
+<h1>Field Events Dispatcher</h1>
+
+<h2>Incoming Events</h2>
+
+<div *ngFor="let event of events" class="event-card">
+
+  <h3>{{ event.title }}</h3>
+
+  <p>{{ event.description }}</p>
+
+  <p><strong>Source:</strong> {{ event.source }}</p>
+
+  <p><strong>Location:</strong> {{ event.location }}</p>
+
+  <p><strong>Status:</strong> {{ event.status }}</p>
+
+  <p><strong>Technician:</strong>
+    {{ event.assignedTechnician || 'Not Assigned' }}
+  </p>
+
+  <p><strong>Created:</strong> {{ event.createdAt }}</p>
+
+  <button (click)="assign(event.id)">
+    Assign to David Cohen
+  </button>
+
+  <hr>
+
+</div>
